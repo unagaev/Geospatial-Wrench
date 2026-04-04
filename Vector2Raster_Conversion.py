@@ -66,10 +66,6 @@ except:
 print('Image number is: ', counter)
 
 
-img_name
-
-
-
 # Extract the SRS, coordinates and spatial resolution
 proj = img.GetProjectionRef()
 ext  = img.GetGeoTransform()
@@ -85,8 +81,7 @@ img_nrow = img_arr.shape[1]
 # Usage: set the path to your shp folder, either "shp_chunks_folder" or "input_shp"
 def vector2raster(input_shp, tree):
     
-    
-    shp_name = os.path.split(input_shp.GetDescription())[1]
+        shp_name = os.path.split(input_shp.GetDescription())[1]
     print(shp_name)
     print(img_name)
     # Let's open the shapefile with masked objects
