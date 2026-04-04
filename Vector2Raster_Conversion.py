@@ -1,16 +1,17 @@
 #!/usr/bin/env python
 # coding: utf-8
+#
+# This is the .py version of the notebook, created on 24.09.‎2025
+# Copyright (C) 2025 by Aleksei Unagaev
 
-# In[1]:
+
+
 
 
 import os
 import glob
 #import matplotlib.pyplot as plt
 from osgeo import gdal, ogr, osr
-
-
-# In[ ]:
 
 
 md_folder = r'path_to_your_images/'
@@ -30,13 +31,8 @@ if not os.path.exists(png_folder):
     os.makedirs(png_folder)
 
 
-# In[8]:
-
 
 md_folder
-
-
-# In[ ]:
 
 
 img_path = md_folder
@@ -47,22 +43,14 @@ in_layer_defn = in_layer.GetLayerDefn()
 in_layer.GetFeatureCount()
 
 
-# In[ ]:
-
-
 img_path = r'path_to_your_output_tif_files'
 
-
-# In[ ]:
 
 
 gdal.UseExceptions()
 
 img = gdal.Open(img_path+'name_of_the_black_white_mask.tif', gdal.GA_ReadOnly)
 img_arr = img.ReadAsArray()
-
-
-# In[92]:
 
 
 img_name = os.path.split(img.GetDescription())[1]
@@ -78,55 +66,21 @@ except:
 print('Image number is: ', counter)
 
 
-# In[93]:
-
-
 img_name
 
-
-# In[16]:
 
 
 # Extract the SRS, coordinates and spatial resolution
 proj = img.GetProjectionRef()
 ext  = img.GetGeoTransform()
-proj
-
-
-# In[95]:
-
-
-ext
-
-
-# In[96]:
 
 
 ext1  = ext[0], ext[1], ext[2], ext[3], ext[4], ext[5]
 #ext1  = ext[0], ext[1]/10, ext[2], ext[3], ext[4], ext[5]/10,
 
 
-# In[97]:
-
-
-ext1
-
-
-# In[98]:
-
-
-img_name
-
-
-# In[99]:
-
-
 img_ncol = img_arr.shape[2]
 img_nrow = img_arr.shape[1]
-
-
-# In[100]:
-
 
 # Usage: set the path to your shp folder, either "shp_chunks_folder" or "input_shp"
 def vector2raster(input_shp, tree):
@@ -187,10 +141,6 @@ def vector2raster(input_shp, tree):
         md.write(f"x_res = {xres}, y_res = {yres}\n###")
     print('...complete')
 
-
-# In[102]:
-
-
 # Usage: specify the path to your shp folder, either "shp_chunks_folder" or "input_shp". Specify the tree_types either 'ALL', 'F', 'NF'
 #tree_species = 'F'
 tree_species = 'Red'
@@ -201,40 +151,6 @@ for i in os.listdir(md_folder):
     #if i.endswith('.shp') and i.startswith('Mask'):
     if i.endswith('.shp'):
         vector2raster(input_shp, tree_species)
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
-
-
-# In[17]:
-
 
 # Usage: specify the path to your shp folder, either "shp_chunks_folder" or "input_shp". Specify the tree_types either 'ALL', 'F', 'NF'
 tree_species = 'ALL'
